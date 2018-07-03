@@ -9,6 +9,10 @@
     "test": "echo \"Error: no test specified\" && exit 1"
   },
   "author": "yangqi",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/YangQiGitHub/wx_mini_program.git"
+  },
   "license": "ISC",
   "devDependencies": {
     "del": "^3.0.0",
