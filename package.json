@@ -1,7 +1,7 @@
 {
-  "name": "wx_mini_program",
+  "name": "wx-miniprogram-boilerplate",
   "version": "0.0.1",
-  "description": "基于gulp构建的微信小程序开发流程",
+  "description": "基于gulp构建的微信小程序开发工作流",
   "main": "",
   "scripts": {
     "dev": "gulp dev",
@@ -11,7 +11,7 @@
   "author": "yangqi",
   "repository": {
     "type": "git",
-    "url": "https://github.com/YangQiGitHub/wx_mini_program.git"
+    "url": "https://github.com/YangQiGitHub/wx-miniprogram-boilerplate.git"
   },
   "license": "ISC",
   "devDependencies": {

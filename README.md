@@ -1,4 +1,5 @@
-## Getting Started
+## wx-miniprogram-boilerplate
+>基于Gulp构建的微信小程序开发工作流
 
 ### 适用场景
 
@@ -16,18 +17,19 @@
 + 项目图片自动压缩
 + 使用命令行快速创建`page`、`template`和`component`
 
-正式开始之前,请确保已经安装node和npm，然后全局安装gulp-cli：
+### Getting Started
+
+##### 0. 开始之前，请确保已经安装node和npm，全局安装gulp-cli
 ```
-npm install --global gulp-cli
+$ npm install --global gulp-cli
 ```
-### 开始
 ##### 1. 下载代码
 ```
-$ git clone git@github.com:YangQiGitHub/wx_mini_program.git
+$ git clone https://github.com/YangQiGitHub/wx-miniprogram-boilerplate.git
 ```
 ##### 2. 进目录，安装依赖
 ```
-$ cd wx_mini_program && npm install
+$ cd wx-miniprogram-boilerplate && npm install
 ```
 ##### 3. 编译代码，生成dist目录，使用开发者工具打开dist目录
 ```
@@ -47,7 +49,7 @@ $ npm run build
 
 ### 工程结构
 ```
-app_wx_projectname
+wx-miniprogram-boilerplate
 ├── dist         // 编译后目录
 ├── node_modules // 项目依赖
 ├── src 
@@ -71,6 +73,6 @@ app_wx_projectname
 
 
 ### TODO
-1. eslint
-3. 代码注释
-4. 规范命令行使用
+- [x] 代码注释
+- [ ] eslint
+- [ ] 规范命令行使用
