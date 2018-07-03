@@ -1,0 +1,6 @@
+{
+  "navigationBarTitleText": "这是标题",
+  "usingComponents": {
+    "components-demo": "/components/index_component/index_component"
+  }
+}

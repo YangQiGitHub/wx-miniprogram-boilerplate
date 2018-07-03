@@ -1,0 +1,114 @@
+@line: #E6E6E6;
+@leftgap: 24rpx;
+
+.top-1px{
+  position: relative;
+  &:before{
+    content: " ";
+    position: absolute;
+    left: 0;
+    top: 0;
+    right: 0;
+    height: 1px;
+    border-top: 1rpx solid @line;
+    color: @line;
+    transform-origin: 0 0;
+    transform: scaleY(.5);
+  }
+}
+.bottom-1px{
+  position: relative;
+  &:after{
+    content: " ";
+    position: absolute;
+    left: 0;
+    bottom: 0;
+    right: 0;
+    height: 1px;
+    border-bottom: 1rpx solid @line;
+    color: @line;
+    transform-origin: 0 100%;
+    transform: scaleY(.5);
+  }
+}
+.left-1px{
+  position: relative;
+  &:before{
+    content: " ";
+    position: absolute;
+    left: 0;
+    bottom: 0;
+    top: 0;
+    width: 1px;
+    border-left: 1rpx solid @line;
+    color: @line;
+    transform-origin: 0 0;
+    transform: scaleX(.5);
+  }
+}
+.right-1px{
+  position: relative;
+  &:after{
+    content: " ";
+    position: absolute;
+    right: 0;
+    bottom: 0;
+    top: 0;
+    width: 1px;
+    border-right: 1rpx solid @line;
+    color: @line;
+    transform-origin: 100% 100%;
+    transform: scaleX(.5);
+  }
+}
+
+.t-1px{
+  position: relative;
+  &:before{
+    content: " ";
+    position: absolute;
+    left: @leftgap;
+    top: 0;
+    right: 0;
+    height: 1px;
+    border-top: 1rpx solid @line;
+    color: @line;
+    transform-origin: 0 0;
+    transform: scaleY(.5);
+  }
+}
+
+.b-1px{
+  position: relative;
+  &:after{
+    content: " ";
+    position: absolute;
+    left: @leftgap;
+    bottom: 0;
+    right: 0;
+    height: 1px;
+    border-bottom: 1rpx solid @line;
+    color: @line;
+    transform-origin: 0 100%;
+    transform: scaleY(.5);
+  }
+}
+
+.all-1px{
+  position: relative;
+  &:after{
+    content: " ";
+    position: absolute;
+    left: 0;
+    top: 0;
+    width: 200%;
+    height: 1px;
+    border: 1px solid @line;
+    color: @line;
+    height: 200%;
+    transform-origin: left top;
+    transform: scale(.5);
+  }
+}
+
+

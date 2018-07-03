@@ -1,0 +1,6 @@
+
+<template name="xxxTpl">
+  <view class="xxx-template">
+		<!-- content -->
+	</view>
+</template>

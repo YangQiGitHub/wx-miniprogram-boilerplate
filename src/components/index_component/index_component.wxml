@@ -1,0 +1,7 @@
+<view class="components-demo">
+  <view class="text">prop from page: {{num}}</view>
+  <view bindtap="clickInTemplate" class="btn">component点击</view>
+  <view bindtap="triggerPageEvent" class="btn">触发page中事件</view>
+  <view class="text">data from component: {{componentNum}}</view>
+  <view bindtap="addComponentNum" class="btn">组件内部事件</view>
+</view>

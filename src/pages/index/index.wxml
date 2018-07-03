@@ -1,0 +1,13 @@
+<import src="../../template/index_tpl/index_tpl.wxml" />
+<view class="demo-page">
+  
+  <view class="page-content">
+    <view class="text">page数据：{{num}}</view>
+    <view bindtap="clickInPage" class="btn">page点击</view>
+  </view>
+
+  <template is="indexTpl" data="{{num}}" />
+
+  <components-demo num="{{num}}" bindaddNum="addNum"></components-demo>
+
+</view>

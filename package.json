@@ -1,0 +1,21 @@
+{
+  "name": "wx_mini_program",
+  "version": "0.0.1",
+  "description": "基于gulp构建的微信小程序开发流程",
+  "main": "",
+  "scripts": {
+    "dev": "gulp dev",
+    "build": "gulp",
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "author": "yangqi",
+  "license": "ISC",
+  "devDependencies": {
+    "del": "^3.0.0",
+    "gulp": "^4.0.0",
+    "gulp-imagemin": "^4.1.0",
+    "gulp-less": "^3.5.0",
+    "gulp-rename": "^1.2.3",
+    "yargs": "^11.0.0"
+  }
+}
