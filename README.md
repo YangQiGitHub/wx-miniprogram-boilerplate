@@ -49,23 +49,24 @@ $ npm run build
 ```
 app_wx_projectname
 ├── dist         // 编译后目录
-├── node_modules // 项目依赖
+├── node_modules // 项目依赖
 ├── src 
-     ├── components // 微信小程序自定义组件
-     ├── images     // 页面中的图片和icon
-     ├── pages      // 小程序page文件
-     ├── styles     // ui框架，公共样式
-     ├── template   // 模板
-     ├── utils      // 公共js文件
-     ├── app.js
-     ├── app.json
-     ├── app.less
-     ├── project.config.json // 项目配置文件
-     └── api.config.js       // 项目api接口配置
+│    ├── components // 微信小程序自定义组件
+│    ├── images     // 页面中的图片和icon
+│    ├── pages      // 小程序page文件
+│    ├── styles     // ui框架，公共样式
+│    ├── template   // 模板
+│    ├── utils      // 公共js文件
+│    ├── app.js
+│    ├── app.json
+│    ├── app.less
+│    ├── project.config.json // 项目配置文件
+│    └── api.config.js       // 项目api接口配置
 ├── .gitignore
 ├── package-lock.json
 ├── package.json
 └── README.md
+
 ```
 
 
