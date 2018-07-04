@@ -38,9 +38,10 @@ $ npm run dev
 ```
 ##### 4. 新建page、template或者component
 ```
-$ gulp auto -d=mypage // 生成page
-$ gulp auto -d=mytemplate -t=t  // 生成template
-$ gulp auto -d=mycomponent -t=c // 生成component
+  gulp auto -p mypage           创建名为mypage的page文件
+  gulp auto -t mytpl            创建名为mytpl的template文件
+  gulp auto -c mycomponent      创建名为mycomponent的component文件
+  gulp auto -s index -p mypage  复制pages/index中的文件创建名称为mypage的页面
 ```
 ##### 5. 上传代码前编译
 ```
@@ -73,11 +74,23 @@ wx-miniprogram-boilerplate
 ```
 
 ### Gulp说明
+
 ```
-TODO
+选项：
+  -s, --src        copy的模板                     [字符串] [默认值: "_template"]
+  -p, --page       生成的page名称                                       [字符串]
+  -t, --template   生成的template名称                                   [字符串]
+  -c, --component  生成的component名称                                  [字符串]
+  --msg            显示帮助信息                                           [布尔]
+
+示例：
+  gulp auto -p mypage           创建名为mypage的page文件
+  gulp auto -t mytpl            创建名为mytpl的template文件
+  gulp auto -c mycomponent      创建名为mycomponent的component文件
+  gulp auto -s index -p mypage  复制pages/index中的文件创建名称为mypage的页面
 ```
 
 ### TODO
 - [x] 代码注释
 - [ ] eslint
-- [ ] 规范命令行使用
+- [x] 规范命令行使用
