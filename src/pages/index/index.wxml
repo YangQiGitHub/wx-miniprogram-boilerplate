@@ -1,4 +1,4 @@
-<import src="../../template/index_tpl/index_tpl.wxml" />
+<import src="../../templates/index_tpl/index_tpl.wxml" />
 <view class="demo-page">
   
   <view class="page-content">
