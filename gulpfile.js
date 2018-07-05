@@ -122,10 +122,17 @@ const auto = (done) => {
       version: { hidden: true },
       help: { hidden: true }
     })
+    .fail((msg, err) => {
+      done();
+      console.error('创建失败!!!')
+      console.error(msg);
+      console.error('请按照如下命令执行...');
+      yargs.parse(['--msg']);
+      return;
+    })
     .help('msg');
 
     const argv = yargs.argv;
-
     const source = argv.s;
     const typeEnum = {
       p: 'pages',
