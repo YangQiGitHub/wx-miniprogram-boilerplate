@@ -1,11 +1,11 @@
 // 全局app实例
-const app = getApp()
+// const app = getApp();
 
 Page({
   data: {
     num: 1
   },
-  onLoad(options) {
+  onLoad() {
     // Do some initialize when page load.
   },
   onReady() {
@@ -32,17 +32,17 @@ Page({
   onPageScroll() {
     // Do something when page scroll
   },
-  onTabItemTap(item) {
+  onTabItemTap() {
     // 当前是 tab 页时，点击 tab 时触发
-    console.log(item.index)
-    console.log(item.pagePath)
-    console.log(item.text)
+    // console.log(item.index);
+    // console.log(item.pagePath);
+    // console.log(item.text);
   },
   // Event handler.
-  clickInPage(event) {
+  clickInPage() {
     this.setData({ num: this.data.num + 1 });
   },
-  clickInTemplate(event) {
+  clickInTemplate() {
     this.setData({ num: this.data.num - 1 });
   },
   addNum() {
@@ -51,4 +51,4 @@ Page({
   customData: {
     hi: 'MINA'
   }
-})
+});

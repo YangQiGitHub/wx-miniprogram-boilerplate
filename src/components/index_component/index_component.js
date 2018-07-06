@@ -1,5 +1,4 @@
 Component({
-
   behaviors: [],
 
   properties: {
@@ -30,5 +29,4 @@ Component({
       this.setData({ componentNum: this.data.componentNum + 1 });
     }
   }
-
-})
+});

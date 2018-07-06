@@ -16,7 +16,9 @@
   "license": "ISC",
   "devDependencies": {
     "del": "^3.0.0",
+    "eslint": "^5.0.1",
     "gulp": "^4.0.0",
+    "gulp-eslint": "^5.0.0",
     "gulp-imagemin": "^4.1.0",
     "gulp-less": "^3.5.0",
     "gulp-rename": "^1.2.3",

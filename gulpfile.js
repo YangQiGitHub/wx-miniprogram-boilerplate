@@ -4,20 +4,25 @@ const rename = require('gulp-rename');
 const del = require('del');
 const imagemin = require('gulp-imagemin');
 const path = require('path');
+const eslint = require('gulp-eslint');
 
 const srcPath = './src/**';
 const distPath = './dist/';
 const wxmlFiles = [`${srcPath}/*.wxml`, `!${srcPath}/_template/*.wxml`];
-const lessFiles = [`${srcPath}/*.less`, `!${srcPath}/styles/**/*.less`, `!${srcPath}/_template/*.less`];
+const lessFiles = [
+  `${srcPath}/*.less`,
+  `!${srcPath}/styles/**/*.less`,
+  `!${srcPath}/_template/*.less`
+];
 const jsonFiles = [`${srcPath}/*.json`, `!${srcPath}/_template/*.json`];
 const jsFiles = [`${srcPath}/*.js`, `!${srcPath}/_template/*.js`];
 const imgFiles = [
   `${srcPath}/images/*.{png,jpg,gif,ico}`,
   `${srcPath}/images/**/*.{png,jpg,gif,ico}`
 ];
-const watchPath = []
-  .concat(wxmlFiles, lessFiles, jsonFiles, jsFiles, imgFiles)
-  .filter(item => !/^!/.test(item));
+// const watchPath = []
+//   .concat(wxmlFiles, lessFiles, jsonFiles, jsFiles, imgFiles)
+//   .filter(item => !/^!/.test(item));
 
 /* 清除dist目录 */
 gulp.task('clean', done => {
@@ -33,9 +38,25 @@ gulp.task(wxml);
 
 /* 编译JS文件 */
 const js = () => {
-  return gulp.src(jsFiles).pipe(gulp.dest(distPath));
+  return (
+    gulp
+      .src(jsFiles)
+      // .pipe(eslint())
+      // .pipe(eslint.format())
+      // .pipe(eslint.failAfterError())
+      .pipe(gulp.dest(distPath))
+  );
 };
 gulp.task(js);
+
+const lint = () => {
+  return gulp
+    .src(jsFiles)
+    .pipe(eslint())
+    .pipe(eslint.format())
+    .pipe(eslint.failAfterError());
+};
+gulp.task(lint);
 
 /* 编译json文件 */
 const json = () => {
@@ -65,13 +86,14 @@ gulp.task(img);
 /* build */
 gulp.task(
   'default',
-  gulp.series('clean', gulp.parallel('wxml', 'js', 'json', 'wxss', 'img'))
+  gulp.series('clean','lint', gulp.parallel( 'wxml', 'js', 'json', 'wxss', 'img'))
 );
 
 /* watch */
 gulp.task('watch', () => {
   gulp.watch(lessFiles, wxss);
-  gulp.watch(jsFiles, js);
+  // gulp.watch(jsFiles, js);
+  gulp.watch(jsFiles, gulp.series('lint', 'js'));
   gulp.watch(imgFiles, img);
   gulp.watch(jsonFiles, json);
   gulp.watch(wxmlFiles, wxml);
@@ -89,12 +111,15 @@ gulp.task('dev', gulp.series('default', 'watch'));
  *   gulp auto -c mycomponent      创建名称为mycomponent的component文件
  *   gulp auto -s index -p mypage  创建名称为mypage的page文件
  */
-const auto = (done) => {
+const auto = done => {
   const yargs = require('yargs')
     .example('gulp auto -p mypage', '创建名为mypage的page文件')
     .example('gulp auto -t mytpl', '创建名为mytpl的template文件')
     .example('gulp auto -c mycomponent', '创建名为mycomponent的component文件')
-    .example('gulp auto -s index -p mypage', '复制pages/index中的文件创建名称为mypage的页面')
+    .example(
+      'gulp auto -s index -p mypage',
+      '复制pages/index中的文件创建名称为mypage的页面'
+    )
     .option({
       s: {
         alias: 'src',
@@ -122,9 +147,9 @@ const auto = (done) => {
       version: { hidden: true },
       help: { hidden: true }
     })
-    .fail((msg, err) => {
+    .fail(msg => {
       done();
-      console.error('创建失败!!!')
+      console.error('创建失败!!!');
       console.error(msg);
       console.error('请按照如下命令执行...');
       yargs.parse(['--msg']);
@@ -132,37 +157,37 @@ const auto = (done) => {
     })
     .help('msg');
 
-    const argv = yargs.argv;
-    const source = argv.s;
-    const typeEnum = {
-      p: 'pages',
-      t: 'templates',
-      c: 'components'
-    };
-    let hasParams = false;
-    let name, type;
-    for(let key in typeEnum) {
-      hasParams = hasParams || !!argv[key];
-      if (argv[key]) {
-        name = argv[key];
-        type = typeEnum[key];
-      }
+  const argv = yargs.argv;
+  const source = argv.s;
+  const typeEnum = {
+    p: 'pages',
+    t: 'templates',
+    c: 'components'
+  };
+  let hasParams = false;
+  let name, type;
+  for (let key in typeEnum) {
+    hasParams = hasParams || !!argv[key];
+    if (argv[key]) {
+      name = argv[key];
+      type = typeEnum[key];
     }
+  }
 
-    if(!hasParams) {
-      done();
-      yargs.parse(['--msg']);
-    }
+  if (!hasParams) {
+    done();
+    yargs.parse(['--msg']);
+  }
 
-    const root = path.join(__dirname, 'src', type);
-    return gulp
-      .src(path.join(root, source, `*.*`))
-      .pipe(
-        rename({
-          dirname: name,
-          basename: name
-        })
-      )
+  const root = path.join(__dirname, 'src', type);
+  return gulp
+    .src(path.join(root, source, '*.*'))
+    .pipe(
+      rename({
+        dirname: name,
+        basename: name
+      })
+    )
     .pipe(gulp.dest(path.join(root)));
 };
 gulp.task(auto);

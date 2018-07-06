@@ -78,17 +78,16 @@ const base = {
    * ]
    */
   getNumber(item, defaultNum) {
-    const isValidNumber = ['NaN', 'Infinity', '-Infinity'].indexOf(`${+item}`) === -1;
+    const isValidNumber =
+      ['NaN', 'Infinity', '-Infinity'].indexOf(`${+item}`) === -1;
     const hasStrNumber = /\d+/.test(`${item}`);
-    return isValidNumber && hasStrNumber ? +item : (
-      base.isDefined(defaultNum) ? defaultNum : -1
-    );
+    return isValidNumber && hasStrNumber ? +item : base.isDefined(defaultNum) ? defaultNum : -1;
   },
   getArray(item, defaultArr) {
-    return base.isArray(item) ? item : (defaultArr || []);
+    return base.isArray(item) ? item : defaultArr || [];
   },
   getObject(item, defaultObj) {
-    return item && base.isObject(item) ? item : (defaultObj || {});
+    return item && base.isObject(item) ? item : defaultObj || {};
   },
   getFunction(item) {
     return base.isFunction(item) ? item : null;
@@ -100,20 +99,20 @@ const base = {
    * @return {Boolean}      [description]
    */
   _json(item) {
-    let str = {type: Object.prototype.toString.call(item)};
+    let str = { type: Object.prototype.toString.call(item) };
     try {
       str = JSON.stringify(item, null, 2);
     } catch (e) {
-      str.error = e && e.message || '';
+      str.error = (e && e.message) || '';
     }
     return base.isString(str) ? str : base.getString(str, `${str}`);
   },
   _parse(item) {
-    let obj = {type: Object.prototype.toString.call(item)};
+    let obj = { type: Object.prototype.toString.call(item) };
     try {
       obj = JSON.parse(item);
     } catch (e) {
-      obj.error = e && e.message || '';
+      obj.error = (e && e.message) || '';
     }
     return base.isObject(obj) ? obj : base.$parse(obj);
   },
@@ -125,12 +124,14 @@ const base = {
   _navigateTo(obj) {
     const len = getCurrentPages().length;
     if (len >= 10) {
+      /* eslint-disable */
       console.warn('[getCurrentPages] length: ', len, '. navigateTo -> redirectTo');
+      /* eslint-enable */
       wx.redirectTo(obj);
     } else {
       wx.navigateTo(obj);
     }
   }
-}
+};
 
 module.exports = base;
