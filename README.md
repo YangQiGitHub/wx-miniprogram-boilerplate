@@ -3,7 +3,7 @@
 
 ### 适用场景
 
-目前开发微信小程序时，可选的技术方案大概有三种，分别是：
+目前开发微信小程序时，可选的技术方案大概有四种，分别是：
 1. [微信小程序原生开发](https://developers.weixin.qq.com/miniprogram/dev/)
 2. [使用wepy框架](https://tencent.github.io/wepy/index.html)
 3. [使用mpvue框架](http://mpvue.com/)
