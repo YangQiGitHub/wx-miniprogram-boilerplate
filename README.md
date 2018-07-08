@@ -108,19 +108,25 @@ gulp auto
   gulp auto -s index -p mypage  复制pages/index中的文件创建名称为mypage的页面
 ```
 
-1. 微信开发者工具中自带babel将ES6转ES5,样式补全以及js代码压缩等功能，所以在此工作流中不做额外添加。
-
+#### Q&A
+- **Q:** 为什么工作流中没有加入js转换，样式补全以及代码压缩？
+  **A:** 微信开发者工具中自带babel将ES6转ES5,样式补全以及js代码压缩等功能，在此工作流中不做额外添加。
 ![](https://img002.qufenqi.com/products/e5/21/e521bb1b6e01b197f22c44ea27f7313d.png)
-
-2. 使用`gulp auto`命令自动生成文件，`-s`参数可以指定copy的对象，默认情况下是以对应目录下文件夹为`_template`中的文件为copy对象的。在开发的过程中，`_template`中的文件不会被编译到`dist`目录。
 
+
+- **Q:** `_template`目录的文件有什么用？
+  **A:** 使用`gulp auto`命令自动生成文件，`-s`参数可以指定copy的对象，默认情况下是以对应目录下文件夹为`_template`中的文件为copy对象的。开发者可以根据业务需求，自己定义`_template`下的文件。
+
+
+- **Q:** `_template`目录的文件是否会被编译到`dist`目录？
+  **A:** 不会。
 
 ### TODO
 - [x] 代码注释
 - [x] 规范命令行使用
 - [x] eslint
-- [ ] 引入常用的CSS库，比如weui之类的
-- [ ] 美化下首页，毕竟颜值也很重要
+- [ ] 引入常用的CSS库，比如weui之类的
+- [ ] 美化首页，毕竟颜值也很重要
 
 ### 最后
-将持续更新，欢迎提BUG。
+将持续更新，如果有新的建议，欢迎创建Issue或发送Pull Request，感谢你的支持和贡献。
