@@ -90,7 +90,7 @@ Tasks:
   img              编译压缩图片文件
   watch            监听开发文件变化
   
-  auto             自动根据模板创建page,template或者小程序自定义组件
+  auto             自动根据模板创建page,template或者component(小程序自定义组件)
 
 gulp auto 
 
