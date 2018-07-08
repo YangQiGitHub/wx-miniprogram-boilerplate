@@ -14,7 +14,7 @@ App({
   onPageNotFound() {
     // 当要打开的页面并不存在时，会回调这个监听器
   },
-    globalData: {
+  globalData: {
     userInfo: null
   }
 });

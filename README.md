@@ -7,6 +7,7 @@
 1. [微信小程序原生开发](https://developers.weixin.qq.com/miniprogram/dev/)
 2. [使用wepy框架](https://tencent.github.io/wepy/index.html)
 3. [使用mpvue框架](http://mpvue.com/)
+4. [使用taro框架](https://github.com/NervJS/taro)
 
 三种开发方案，各有优劣。使用第三方框架开发，可以享受框架带来的开发便利，但对于小程序新增的诸多特性和功能，比如**WXS模块**、**自定义组件**和**插件**等，受制于第三方框架，无法使用。
 
@@ -16,6 +17,7 @@
 
 + 基于`gulp+less`构建的微信小程序工程项目
 + 项目图片自动压缩
++ ESLint代码检查
 + 使用命令行快速创建`page`、`template`和`component`
 
 ### Getting Started
@@ -76,6 +78,22 @@ wx-miniprogram-boilerplate
 ### Gulp说明
 
 ```
+Tasks:
+  dev              开发编译，同时监听文件变化
+  build            整体编译
+
+  clean            清空产出目录
+  wxml             编译wxml文件（仅仅copy）
+  js               编译js文件，同时进行ESLint语法检查
+  json             编译json文件（仅仅copy）
+  wxss             编译less文件为wxss
+  img              编译压缩图片文件
+  watch            监听开发文件变化
+  
+  auto             自动根据模板创建page,template或者小程序自定义组件
+
+gulp auto 
+
 选项：
   -s, --src        copy的模板                     [字符串] [默认值: "_template"]
   -p, --page       生成的page名称                                       [字符串]
@@ -90,7 +108,19 @@ wx-miniprogram-boilerplate
   gulp auto -s index -p mypage  复制pages/index中的文件创建名称为mypage的页面
 ```
 
+1. 微信开发者工具中自带babel将ES6转ES5,样式补全以及js代码压缩等功能，所以在此工作流中不做额外添加。
+
+![](https://img002.qufenqi.com/products/e5/21/e521bb1b6e01b197f22c44ea27f7313d.png)
+
+2. 使用`gulp auto`命令自动生成文件，`-s`参数可以指定copy的对象，默认情况下是以对应目录下文件夹为`_template`中的文件为copy对象的。在开发的过程中，`_template`中的文件不会被编译到`dist`目录。
+
+
 ### TODO
 - [x] 代码注释
-- [ ] eslint
 - [x] 规范命令行使用
+- [x] eslint
+- [ ] 引入常用的CSS库，比如weui之类的
+- [ ] 美化下首页，毕竟颜值也很重要
+
+### 最后
+将持续更新，欢迎提BUG。
