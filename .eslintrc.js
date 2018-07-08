@@ -9,9 +9,9 @@ module.exports = {
     ecmaVersion: 2015
   },
   rules: {
-    indent: ['warn', 2],
+    indent: ['error', 2],
     quotes: ['error', 'single'],
-    semi: ['warn', 'always'],
+    semi: ['error', 'always'],
     'no-console': 1
   },
   globals: {

@@ -20,9 +20,6 @@ const imgFiles = [
   `${srcPath}/images/*.{png,jpg,gif,ico}`,
   `${srcPath}/images/**/*.{png,jpg,gif,ico}`
 ];
-// const watchPath = []
-//   .concat(wxmlFiles, lessFiles, jsonFiles, jsFiles, imgFiles)
-//   .filter(item => !/^!/.test(item));
 
 /* 清除dist目录 */
 gulp.task('clean', done => {
@@ -38,25 +35,13 @@ gulp.task(wxml);
 
 /* 编译JS文件 */
 const js = () => {
-  return (
-    gulp
-      .src(jsFiles)
-      // .pipe(eslint())
-      // .pipe(eslint.format())
-      // .pipe(eslint.failAfterError())
-      .pipe(gulp.dest(distPath))
-  );
-};
-gulp.task(js);
-
-const lint = () => {
   return gulp
     .src(jsFiles)
     .pipe(eslint())
     .pipe(eslint.format())
-    .pipe(eslint.failAfterError());
+    .pipe(gulp.dest(distPath));
 };
-gulp.task(lint);
+gulp.task(js);
 
 /* 编译json文件 */
 const json = () => {
@@ -85,22 +70,21 @@ gulp.task(img);
 
 /* build */
 gulp.task(
-  'default',
-  gulp.series('clean','lint', gulp.parallel( 'wxml', 'js', 'json', 'wxss', 'img'))
+  'build',
+  gulp.series('clean', gulp.parallel( 'wxml', 'js', 'json', 'wxss', 'img'))
 );
 
 /* watch */
 gulp.task('watch', () => {
   gulp.watch(lessFiles, wxss);
-  // gulp.watch(jsFiles, js);
-  gulp.watch(jsFiles, gulp.series('lint', 'js'));
+  gulp.watch(jsFiles, js);
   gulp.watch(imgFiles, img);
   gulp.watch(jsonFiles, json);
   gulp.watch(wxmlFiles, wxml);
 });
 
 /* dev */
-gulp.task('dev', gulp.series('default', 'watch'));
+gulp.task('dev', gulp.series('build', 'watch'));
 
 /**
  * auto 自动创建page or template or component
