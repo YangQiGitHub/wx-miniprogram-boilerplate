@@ -1,9 +1,10 @@
 // 全局app实例
-const app = getApp()
+const app = getApp();
+console.log(app);
 
 Page({
   data: {},
-  onLoad(options) {
+  onLoad() {
     // Do some initialize when page load.
   },
   onReady() {
@@ -30,8 +31,8 @@ Page({
   onPageScroll() {
     // Do something when page scroll
   },
-  onTabItemTap(item) {
+  onTabItemTap() {
     // 当前是 tab 页时，点击 tab 时触发
   },
   customData: {}
-})
+});
