@@ -69,6 +69,7 @@ wx-miniprogram-boilerplate
 │    ├── project.config.json // 项目配置文件
 │    └── api.config.js       // 项目api接口配置
 ├── .gitignore
+├── .eslintrc.js
 ├── package-lock.json
 ├── package.json
 └── README.md
