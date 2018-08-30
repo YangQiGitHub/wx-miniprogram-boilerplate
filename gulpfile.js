@@ -29,14 +29,16 @@ gulp.task('clean', done => {
 
 /* 编译wxml文件 */
 const wxml = () => {
-  return gulp.src(wxmlFiles).pipe(gulp.dest(distPath));
+  return gulp
+    .src(wxmlFiles, { since: gulp.lastRun(wxml) })
+    .pipe(gulp.dest(distPath));
 };
 gulp.task(wxml);
 
 /* 编译JS文件 */
 const js = () => {
   return gulp
-    .src(jsFiles)
+    .src(jsFiles, { since: gulp.lastRun(js) })
     .pipe(eslint())
     .pipe(eslint.format())
     .pipe(gulp.dest(distPath));
@@ -45,7 +47,9 @@ gulp.task(js);
 
 /* 编译json文件 */
 const json = () => {
-  return gulp.src(jsonFiles).pipe(gulp.dest(distPath));
+  return gulp
+    .src(jsonFiles, { since: gulp.lastRun(json) })
+    .pipe(gulp.dest(distPath));
 };
 gulp.task(json);
 
@@ -62,7 +66,7 @@ gulp.task(wxss);
 /* 编译压缩图片 */
 const img = () => {
   return gulp
-    .src(imgFiles)
+    .src(imgFiles, { since: gulp.lastRun(img)})
     .pipe(imagemin())
     .pipe(gulp.dest(distPath));
 };
@@ -76,7 +80,9 @@ gulp.task(
 
 /* watch */
 gulp.task('watch', () => {
-  gulp.watch(lessFiles, wxss);
+  let watchLessFiles = [...lessFiles];
+  watchLessFiles.pop();
+  gulp.watch(watchLessFiles, wxss);
   gulp.watch(jsFiles, js);
   gulp.watch(imgFiles, img);
   gulp.watch(jsonFiles, json);
