@@ -87,12 +87,6 @@ const img = () => {
 };
 gulp.task(img);
 
-// /* build */
-// gulp.task(
-//   'build',
-//   gulp.series('clean', gulp.parallel( 'wxml', 'js', 'json', 'wxss', 'img'))
-// );
-
 /* watch */
 gulp.task('watch', () => {
   let watchLessFiles = [...lessFiles];
@@ -103,9 +97,6 @@ gulp.task('watch', () => {
   gulp.watch(jsonFiles, json);
   gulp.watch(wxmlFiles, wxml);
 });
-
-/* dev */
-// gulp.task('dev', gulp.series('build', 'watch'));
 
 
 /* build */
