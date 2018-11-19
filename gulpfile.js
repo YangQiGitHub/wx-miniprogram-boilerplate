@@ -15,7 +15,7 @@ const lessFiles = [
   `!${srcPath}/_template/*.less`
 ];
 const jsonFiles = [`${srcPath}/*.json`, `!${srcPath}/_template/*.json`];
-const jsFiles = [`${srcPath}/*.js`, `!${srcPath}/_template/*.js`];
+const jsFiles = [`${srcPath}/*.js`, `!${srcPath}/_template/*.js`, `!${srcPath}/env/*.js`];
 const imgFiles = [
   `${srcPath}/images/*.{png,jpg,gif,ico}`,
   `${srcPath}/images/**/*.{png,jpg,gif,ico}`
@@ -45,6 +45,21 @@ const js = () => {
 };
 gulp.task(js);
 
+/* 配置请求地址相关 */
+const envJs = (env) => {
+  return () => {
+    return gulp
+      .src(`./src/env/${env}.js`)
+      .pipe(eslint())
+      .pipe(eslint.format())
+      .pipe(rename('env.js'))
+      .pipe(gulp.dest(distPath));
+  };
+};
+gulp.task('devEnv', envJs('development'));
+gulp.task('testEnv', envJs('testing'));
+gulp.task('prodEnv', envJs('production'));
+
 /* 编译json文件 */
 const json = () => {
   return gulp
@@ -72,11 +87,11 @@ const img = () => {
 };
 gulp.task(img);
 
-/* build */
-gulp.task(
-  'build',
-  gulp.series('clean', gulp.parallel( 'wxml', 'js', 'json', 'wxss', 'img'))
-);
+// /* build */
+// gulp.task(
+//   'build',
+//   gulp.series('clean', gulp.parallel( 'wxml', 'js', 'json', 'wxss', 'img'))
+// );
 
 /* watch */
 gulp.task('watch', () => {
@@ -90,7 +105,20 @@ gulp.task('watch', () => {
 });
 
 /* dev */
-gulp.task('dev', gulp.series('build', 'watch'));
+// gulp.task('dev', gulp.series('build', 'watch'));
+
+
+/* build */
+gulp.task(
+  'build',
+  gulp.series('clean', gulp.parallel( 'wxml', 'js', 'json', 'wxss', 'img', 'prodEnv'))
+);
+
+/* dev */
+gulp.task('dev', gulp.series('clean', gulp.parallel( 'wxml', 'js', 'json', 'wxss', 'img', 'devEnv'), 'watch'));
+
+/* test */
+gulp.task('test', gulp.series('clean', gulp.parallel( 'wxml', 'js', 'json', 'wxss', 'img', 'testEnv')));
 
 /**
  * auto 自动创建page or template or component

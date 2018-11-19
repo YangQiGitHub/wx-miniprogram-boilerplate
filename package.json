@@ -1,12 +1,12 @@
 {
   "name": "wx-miniprogram-boilerplate",
-  "version": "0.0.1",
+  "version": "0.0.2",
   "description": "基于gulp构建的微信小程序开发工作流",
   "main": "",
   "scripts": {
     "dev": "gulp dev",
     "build": "gulp build",
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "test": "gulp test"
   },
   "author": "yangqi",
   "repository": {

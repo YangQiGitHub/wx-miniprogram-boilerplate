@@ -9,7 +9,7 @@
 3. [使用mpvue框架](http://mpvue.com/)
 4. [使用taro框架](https://github.com/NervJS/taro)
 
-几种开发方案，各有优劣。使用第三方框架开发，可以享受框架带来的开发便利，但对于小程序新增的诸多特性和功能，比如**WXS模块**、**自定义组件**和**插件**等，受制于第三方框架，无法使用。
+几种开发方案，各有优劣。使用第三方框架开发，可以享受框架带来的开发便利，但对于小程序新增的诸多特性和功能，比如**WXS模块**、**自定义组件**和**插件**等，受制于框架实现，无法使用。
 
 而原生小程序的开发模式，又过于简陋，就样式来说，写惯了less，stylus和sass的同学一定无法忍受wxss的这种写法，基于此，决定使用**gulp**自动化工具来构建一套微信小程序开发的基础模板，在完全保留微信小程序功能和特性的基础上，又可以的使用`less`来写样式，同时加入图片压缩，命令行快速创建模板等特性，如此开发，快哉，快哉！
 
@@ -19,6 +19,7 @@
 + 项目图片自动压缩
 + ESLint代码检查
 + 使用命令行快速创建`page`、`template`和`component`
++ request请求域名随环境切换
 
 ### Getting Started
 
@@ -36,7 +37,8 @@ $ cd wx-miniprogram-boilerplate && npm install
 ```
 ##### 3. 编译代码，生成dist目录，使用开发者工具打开dist目录
 ```
-$ npm run dev
+$ npm run dev （请求域名指向开发环境）
+$ npm run test (请求域名指向测试环境)
 ```
 ##### 4. 新建page、template或者component
 ```
@@ -47,7 +49,7 @@ $ npm run dev
 ```
 ##### 5. 上传代码前编译
 ```
-$ npm run build
+$ npm run build （请求域名指向线上生产环境）
 ```
 ##### 6. 上传代码，审核，发版
 
@@ -58,6 +60,7 @@ wx-miniprogram-boilerplate
 ├── node_modules // 项目依赖
 ├── src 
 │    ├── components // 微信小程序自定义组件
+│    ├── env        // 请求域名配置
 │    ├── images     // 页面中的图片和icon
 │    ├── pages      // 小程序page文件
 │    ├── styles     // ui框架，公共样式
@@ -81,6 +84,7 @@ wx-miniprogram-boilerplate
 ```
 Tasks:
   dev              开发编译，同时监听文件变化
+  test             整体编译，请求指向测试环境
   build            整体编译
 
   clean            清空产出目录
@@ -90,7 +94,8 @@ Tasks:
   wxss             编译less文件为wxss
   img              编译压缩图片文件
   watch            监听开发文件变化
-  
+  devEnv/testEnv/prodEnv 生成对应环境的请求域名配置
+
   auto             自动根据模板创建page,template或者component(小程序自定义组件)
 
 gulp auto 
@@ -133,7 +138,7 @@ gulp auto
 - [x] 规范命令行使用
 - [x] eslint
 - [x] gulp增量编译
-- [ ] request请求域名随环境切换
+- [x] request请求域名随环境切换
 
 ### 最后
 将持续更新，如果有新的建议，欢迎创建Issue或发送PR，感谢你的支持和贡献。
