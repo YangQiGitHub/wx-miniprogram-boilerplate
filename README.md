@@ -138,7 +138,7 @@ gulp auto
 - [x] 规范命令行使用
 - [x] eslint
 - [x] gulp增量编译
-- [x] request请求域名随环境切换
+- [x] request请求域名随环境切换
 
 ### 最后
 将持续更新，如果有新的建议，欢迎创建Issue或发送PR，感谢你的支持和贡献。
