@@ -19,7 +19,7 @@
 + 项目图片自动压缩
 + ESLint代码检查
 + 使用命令行快速创建`page`、`template`和`component`
-+ request请求域名随环境切换
++ 支持生产环境打包
 
 ### Getting Started
 
@@ -37,8 +37,8 @@ $ cd wx-miniprogram-boilerplate && npm install
 ```
 ##### 3. 编译代码，生成dist目录，使用开发者工具打开dist目录
 ```
-$ npm run dev （请求域名指向开发环境）
-$ npm run test (请求域名指向测试环境)
+$ npm run dev （开发环境打包）
+$ npm run test (测试环境打包)
 ```
 ##### 4. 新建page、template或者component
 ```
@@ -49,7 +49,7 @@ $ npm run test (请求域名指向测试环境)
 ```
 ##### 5. 上传代码前编译
 ```
-$ npm run build （请求域名指向线上生产环境）
+$ npm run build （生产环境打包）
 ```
 ##### 6. 上传代码，审核，发版
 
@@ -138,7 +138,7 @@ gulp auto
 - [x] 规范命令行使用
 - [x] eslint
 - [x] gulp增量编译
-- [x] request请求域名随环境切换
+- [x] 生产环境打包
 
 ### 最后
 将持续更新，如果有新的建议，欢迎创建Issue或发送PR，感谢你的支持和贡献。
